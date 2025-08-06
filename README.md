@@ -1,17 +1,17 @@
-# Modal 
+# Modal
 
 모달 UI와 기본적인 기능을 구현한 과제입니다.
 
 ## 기술 스택
 
-| 카테고리 | 기술 |
-| --- | --- | 
-| 언어 | TypeScript |
-| 라이브러리 | React
-| 상태 관리 | useState |
-| 스타일링 | Tailwind | 
-| 테스트 | Vitest |
-| 배포 | Vercel |
+| 카테고리   | 기술       |
+| ---------- | ---------- |
+| 언어       | TypeScript |
+| 라이브러리 | React      |
+| 상태 관리  | useState   |
+| 스타일링   | Tailwind   |
+| 테스트     | Vitest     |
+| 배포       | Vercel     |
 
 ## 주요 기능
 
@@ -28,7 +28,9 @@ modal-practice/
 ├── src
 │   ├── components/         # 재사용 가능한 UI 컴포넌트
 │   ├── hooks/              # 커스텀 훅
-│   └── styles/             # 글로벌 스타일
+│   ├── styles/             # 글로벌 스타일
+│   ├── App.tsx
+│   └── main.tsx
 ├── eslint.config.js        # 코드 스타일 규칙
 ├── package.json            # 프로젝트 메타 정보 및 의존성
 ├── vite.config.ts          # 빌드 및 개발 서버 설정
