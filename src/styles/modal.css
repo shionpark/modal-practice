@@ -1,0 +1,29 @@
+.modal-overlay {
+  @apply fixed inset-0 flex items-center justify-center bg-black;
+  @apply transition duration-300 ease-in-out;
+}
+.modal-section {
+  @apply fixed inset-0 flex scale-95 flex-col items-center justify-center;
+  @apply transform transition duration-300 ease-in-out;
+}
+.modal-content {
+  @apply relative flex flex-col items-center rounded-md bg-white shadow-md;
+}
+
+@layer components {
+  .modal-content .section {
+    @apply flex flex-col gap-6 p-7;
+  }
+  .modal-content .title {
+    @apply text-lg font-bold;
+  }
+  .modal-content .content {
+    @apply block text-gray-700;
+  }
+  .modal-content .actions {
+    @apply flex w-full items-center justify-end gap-2 p-3;
+  }
+  .modal-content .menus {
+    @apply cursor-pointer bg-gray-100 p-3 pr-10 hover:bg-gray-200;
+  }
+}

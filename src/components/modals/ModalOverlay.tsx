@@ -12,12 +12,16 @@ export function ModalOverlay({
 }: ModalOverlayProps) {
   return (
     <div className="modal-overlay">
-      {showCloseBtn && (
-        <Button variant="transparent" className="absolute top-4 right-2">
-          X
-        </Button>
-      )}
-      {children}
+      <div className="modal-section">
+        <div className="modal-content">
+          {showCloseBtn && (
+            <Button variant="transparent" className="absolute top-4 right-2">
+              X
+            </Button>
+          )}
+          {children}
+        </div>
+      </div>
     </div>
   );
 }
