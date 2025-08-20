@@ -1,5 +1,5 @@
 import { Button } from '../Button';
-import { ModalOverlay } from '../Modal/ModalOverlay';
+import { ModalOverlay } from './ModalOverlay';
 
 interface Action {
   label: string;
