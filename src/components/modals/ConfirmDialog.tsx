@@ -21,16 +21,9 @@ export function ConfirmDialog({ title, content, actions }: ConfirmDialogProps) {
       </div>
       <div className="actions">
         {actions?.map(({ label, onClick }: Action) => (
-          <>
-            <Button
-              aria-labelledby={label}
-              color="primary"
-              variant="transparent"
-              onClick={onClick}
-            >
-              {label}
-            </Button>
-          </>
+          <Button color="primary" variant="transparent" onClick={onClick}>
+            {label}
+          </Button>
         ))}
       </div>
     </ModalOverlay>

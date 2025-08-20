@@ -23,16 +23,16 @@ function App() {
         title="Title"
         content={
           <ul className="flex max-h-[10rem] w-[12rem] flex-col overflow-y-auto">
-            <li aria-labelledby="option1" className="flex gap-2 py-2">
-              <input type="checkbox" />
+            <li className="flex gap-2 py-2">
+              <input type="checkbox" aria-label="option1" />
               <span>Option 1</span>
             </li>
-            <li aria-labelledby="option2" className="flex gap-2 py-2">
-              <input type="checkbox" />
+            <li className="flex gap-2 py-2">
+              <input type="checkbox" aria-label="option2" />
               <span>Option 2</span>
             </li>
-            <li aria-labelledby="option3" className="flex gap-2 py-2">
-              <input type="checkbox" />
+            <li className="flex gap-2 py-2">
+              <input type="checkbox" aria-label="option3" />
               <span>Option 3</span>
             </li>
           </ul>
