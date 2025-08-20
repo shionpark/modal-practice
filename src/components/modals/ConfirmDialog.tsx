@@ -1,14 +1,11 @@
-import { Button } from '../Button';
+import type { ReactNode } from 'react';
 import { ModalOverlay } from './ModalOverlay';
-
-interface Action {
-  label: string;
-  onClick?: () => void;
-}
+import { Button } from '../Button';
+import type { Action } from './types';
 
 interface ConfirmDialogProps {
   title: string;
-  content: React.ReactNode;
+  content: ReactNode;
   actions?: Action[];
 }
 

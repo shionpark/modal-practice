@@ -1,8 +1,9 @@
+import type { ReactNode } from 'react';
 import { ModalOverlay } from './ModalOverlay';
 
 interface SimpleDialogProps {
   title: string;
-  children?: React.ReactNode;
+  children?: ReactNode;
 }
 
 export function SimpleDialog({ title, children }: SimpleDialogProps) {

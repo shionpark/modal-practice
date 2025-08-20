@@ -1,8 +1,8 @@
-import type React from 'react';
 import { Button } from '../Button';
+import type { ReactNode } from 'react';
 
 interface ModalOverlayProps {
-  children: React.ReactNode;
+  children: ReactNode;
   showCloseBtn?: boolean;
 }
 

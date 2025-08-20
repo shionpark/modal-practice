@@ -1,9 +1,5 @@
 import { ModalOverlay } from './ModalOverlay';
-
-interface Action {
-  label: string;
-  onClick?: () => void;
-}
+import type { Action } from './types';
 
 interface ToggleMenusProps {
   menus: Action[];
