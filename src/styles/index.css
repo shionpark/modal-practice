@@ -1,5 +1,46 @@
 @import 'tailwindcss';
 
+@theme {
+  --color-primary: #155dfc; /* text-blue-600 */
+  --color-mint-500: oklch(0.72 0.11 178);
+}
+
 body {
   background-color: white;
+}
+
+h1 {
+  font-weight: bolder;
+  font-size: 32px;
+}
+
+h2 {
+  font-weight: bold;
+  font-size: 28px;
+}
+
+h3 {
+  font-weight: bold;
+  font-size: 24px;
+}
+
+@layer components {
+  .modal-overlay {
+    @apply relative rounded-md bg-white shadow-md;
+  }
+  .modal-overlay .section {
+    @apply flex flex-col gap-6 p-7;
+  }
+  .modal-overlay .title {
+    @apply text-lg font-bold;
+  }
+  .modal-overlay .content {
+    @apply block text-gray-700;
+  }
+  .modal-overlay .actions {
+    @apply flex items-center justify-end gap-2 p-3;
+  }
+  .modal-overlay .menus {
+    @apply cursor-pointer bg-gray-100 p-3 pr-10 hover:bg-gray-200;
+  }
 }
