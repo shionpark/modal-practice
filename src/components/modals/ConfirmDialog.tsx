@@ -1,17 +1,23 @@
 import type { ReactNode } from 'react';
-import { ModalOverlay } from './ModalOverlay';
 import { Button } from '../Button';
-import type { Action } from './types';
+import { ModalOverlay } from './ModalOverlay';
+import type { Action, ModalProps } from './types';
 
-interface ConfirmDialogProps {
+interface ConfirmDialogProps extends ModalProps {
   title: string;
   content: ReactNode;
   actions?: Action[];
 }
 
-export function ConfirmDialog({ title, content, actions }: ConfirmDialogProps) {
+export function ConfirmDialog({
+  title,
+  content,
+  actions,
+  isModalOpen,
+  closeModal,
+}: ConfirmDialogProps) {
   return (
-    <ModalOverlay>
+    <ModalOverlay isModalOpen={isModalOpen} closeModal={closeModal}>
       <div className="section">
         <div className="title">{title}</div>
         <div className="content">{content}</div>

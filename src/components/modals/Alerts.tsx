@@ -1,16 +1,26 @@
 import { Button } from '../Button';
 import { ModalOverlay } from './ModalOverlay';
-import type { Action } from './types';
+import type { Action, ModalProps } from './types';
 
-interface AlertsProps {
+interface AlertsProps extends ModalProps {
   title?: string;
   message: string;
   actions?: Action[];
 }
 
-export function Alerts({ title = '', message, actions }: AlertsProps) {
+export function Alerts({
+  title = '',
+  message,
+  actions,
+  isModalOpen,
+  closeModal,
+}: AlertsProps) {
   return (
-    <ModalOverlay showCloseBtn={false}>
+    <ModalOverlay
+      isModalOpen={isModalOpen}
+      closeModal={closeModal}
+      showCloseBtn={false}
+    >
       <div className="section">
         <div className="title">{title}</div>
         <span className="content">{message}</span>

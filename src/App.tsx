@@ -1,17 +1,37 @@
+import { Button } from './components/Button';
 import { Alerts } from './components/modals/Alerts';
 import { ConfirmDialog } from './components/modals/ConfirmDialog';
 import { SimpleDialog } from './components/modals/SimpleDialog';
-import { ToggleMenus } from './components/modals/ToggleMenus';
+import { ToggleMenus as SimpleMenus } from './components/modals/ToggleMenus';
+import { useToggle } from './hooks/useToggle';
 
 function App() {
+  const [isAlertsOpen, toggleAlerts, , closeAlerts] = useToggle(false);
+  const [isTitleDialogOpen, toggleTitleDialog, , closeTitleDialog] =
+    useToggle(false);
+  const [isLocationDialogOpen, toggleLocationDialog, , closeLocationDialog] =
+    useToggle(false);
+  const [isSimpleDialogOpen, toggleSimpleDialog, , closeSimpleDialog] =
+    useToggle(false);
+  const [isSimpleMenusOpen, toggleSimpleMenus, , closeSimpleMenus] =
+    useToggle(false);
+
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center gap-6 bg-gray-100">
+    <div className="flex min-h-screen items-center justify-center gap-6 bg-gray-100">
+      <Button onClick={toggleAlerts}>삭제</Button>
+      <Button onClick={toggleTitleDialog}>제목 선택</Button>
+      <Button onClick={toggleLocationDialog}>위치 정보 동의</Button>
+      <Button onClick={toggleSimpleDialog}>메뉴 선택</Button>
+      <Button onClick={toggleSimpleMenus}>더보기</Button>
+
       <Alerts
+        isModalOpen={isAlertsOpen}
+        closeModal={closeAlerts}
         message="초안을 삭제하시겠습니까?"
         actions={[
           {
             label: '취소',
-            onClick: () => confirm('취소'),
+            onClick: closeAlerts,
           },
           {
             label: '삭제',
@@ -19,8 +39,11 @@ function App() {
           },
         ]}
       />
+
       <ConfirmDialog
         title="Title"
+        isModalOpen={isTitleDialogOpen}
+        closeModal={closeTitleDialog}
         content={
           <ul className="flex max-h-[10rem] w-[12rem] flex-col overflow-y-auto">
             <li className="flex gap-2 py-2">
@@ -40,21 +63,24 @@ function App() {
         actions={[
           {
             label: '취소',
-            onClick: () => confirm('취소'),
+            onClick: closeTitleDialog,
           },
           {
-            label: '동의',
-            onClick: () => confirm('동의'),
+            label: '선택',
+            onClick: () => confirm('선택'),
           },
         ]}
       />
+
       <ConfirmDialog
         title="위치 정보 동의"
+        isModalOpen={isLocationDialogOpen}
+        closeModal={closeLocationDialog}
         content="Google에서 앱의 위치 파악을 지원하도록 동의하시겠습니까?"
         actions={[
           {
             label: '취소',
-            onClick: () => confirm('취소'),
+            onClick: closeLocationDialog,
           },
           {
             label: '동의',
@@ -62,7 +88,12 @@ function App() {
           },
         ]}
       />
-      <SimpleDialog title="계정 설정">
+
+      <SimpleDialog
+        title="계정 설정"
+        isModalOpen={isSimpleDialogOpen}
+        closeModal={closeSimpleDialog}
+      >
         <div className="flex items-center gap-3">
           <div className="rounded-full bg-black p-5" />
           <span>username@gmail.com</span>
@@ -76,7 +107,10 @@ function App() {
           <span>username@gmail.com</span>
         </div>
       </SimpleDialog>
-      <ToggleMenus
+
+      <SimpleMenus
+        isModalOpen={isSimpleMenusOpen}
+        closeModal={closeSimpleMenus}
         menus={[
           {
             label: '모든 알림 보여주기',

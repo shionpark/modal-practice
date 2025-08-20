@@ -1,14 +1,24 @@
 import type { ReactNode } from 'react';
 import { ModalOverlay } from './ModalOverlay';
+import type { ModalProps } from './types';
 
-interface SimpleDialogProps {
+interface SimpleDialogProps extends ModalProps {
   title: string;
   children?: ReactNode;
 }
 
-export function SimpleDialog({ title, children }: SimpleDialogProps) {
+export function SimpleDialog({
+  title,
+  children,
+  isModalOpen,
+  closeModal,
+}: SimpleDialogProps) {
   return (
-    <ModalOverlay showCloseBtn={false}>
+    <ModalOverlay
+      showCloseBtn={false}
+      isModalOpen={isModalOpen}
+      closeModal={closeModal}
+    >
       <div className="section">
         <div className="title">{title}</div>
         {children}
