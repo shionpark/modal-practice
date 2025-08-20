@@ -1,7 +1,8 @@
 import type { ReactNode } from 'react';
 import clsx from 'clsx';
-import { Button } from './Button';
-import type { ModalProps } from './modals';
+import { Button } from '@components/Button';
+import type { ModalProps } from '@components/modals';
+import { useOutsideClick } from '@hooks/useOutsideClick';
 
 interface ModalOverlayProps extends ModalProps {
   children: ReactNode;
@@ -9,11 +10,13 @@ interface ModalOverlayProps extends ModalProps {
 }
 
 export function ModalOverlay({
-  isModalOpen,
-  closeModal,
   children,
   showCloseBtn = true,
+  isModalOpen,
+  closeModal,
 }: ModalOverlayProps) {
+  const { modalRef } = useOutsideClick(closeModal);
+
   const modalOverlayClass = (isOpen: boolean) =>
     clsx(
       'modal-overlay',
@@ -32,7 +35,7 @@ export function ModalOverlay({
     <>
       <div className={modalOverlayClass(isModalOpen)} />
       <div className={modalSectionClass(isModalOpen)}>
-        <div className="modal-content">
+        <div className="modal-content" ref={modalRef}>
           {showCloseBtn && (
             <Button
               variant="transparent"
