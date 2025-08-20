@@ -1,15 +1,15 @@
-import { ModalOverlay } from './ModalOverlay';
+import { ModalOverlay } from '@components/ModalOverlay';
 import type { Action, ModalProps } from './types';
 
-interface ToggleMenusProps extends ModalProps {
+interface SimpleMenusProps extends ModalProps {
   menus: Action[];
 }
 
-export function ToggleMenus({
+export function SimpleMenus({
   menus,
   isModalOpen,
   closeModal,
-}: ToggleMenusProps) {
+}: SimpleMenusProps) {
   return (
     <ModalOverlay
       showCloseBtn={false}

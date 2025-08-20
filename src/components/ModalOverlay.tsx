@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import clsx from 'clsx';
-import { Button } from '../Button';
-import type { ModalProps } from './types';
+import { Button } from './Button';
+import type { ModalProps } from './modals';
 
 interface ModalOverlayProps extends ModalProps {
   children: ReactNode;
