@@ -14,11 +14,16 @@ export function ConfirmDialog({ title, content, actions }: ConfirmDialogProps) {
     <ModalOverlay>
       <div className="section">
         <div className="title">{title}</div>
-        <span className="content">{content}</span>
+        <div className="content">{content}</div>
       </div>
       <div className="actions">
-        {actions?.map(({ label, onClick }: Action) => (
-          <Button color="primary" variant="transparent" onClick={onClick}>
+        {actions?.map(({ label, onClick }: Action, index: number) => (
+          <Button
+            key={`${label}-${index}`}
+            color="primary"
+            variant="transparent"
+            onClick={onClick}
+          >
             {label}
           </Button>
         ))}
