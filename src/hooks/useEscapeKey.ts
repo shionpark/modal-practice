@@ -1,30 +1,22 @@
-import { useEffect, useRef, type KeyboardEvent } from 'react';
+import { useEffect, type KeyboardEvent } from 'react';
 
 interface UseEscapeKeyProps {
   isModalOpen: boolean;
-  closeModal: () => void;
+  onEscape: () => void;
 }
 
-export const useEscapeKey = ({
-  isModalOpen,
-  closeModal,
-}: UseEscapeKeyProps) => {
-  const overlayRef = useRef<HTMLDivElement>(null);
-
-  const handleEscapeKey = (event: KeyboardEvent<HTMLDivElement>) => {
-    if (event.key === 'Escape') {
-      closeModal();
-    }
-  };
-
+export const useEscapeKey = ({ isModalOpen, onEscape }: UseEscapeKeyProps) => {
   useEffect(() => {
-    if (isModalOpen) {
-      overlayRef.current?.focus();
-    }
-  }, [isModalOpen]);
+    if (!isModalOpen) return;
 
-  return {
-    overlayRef,
-    handleEscapeKey,
-  };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        onEscape();
+      }
+    };
+
+    document.addEventListener('keydown', onKey);
+    return () => document.removeEventListener('keydown', onKey);
+  }, [isModalOpen, onEscape]);
 };

@@ -18,20 +18,13 @@ export function ModalOverlay({
   isModalOpen,
   closeModal,
 }: ModalOverlayProps) {
-  const { overlayRef, handleEscapeKey } = useEscapeKey({
-    isModalOpen,
-    closeModal,
-  });
+  useEscapeKey({ isModalOpen, onEscape: closeModal });
+
   const { modalRef } = useOutsideClick(closeModal);
 
   return (
     <>
-      <div
-        ref={overlayRef}
-        tabIndex={0}
-        onKeyDown={handleEscapeKey}
-        className={modalOverlayClass(isModalOpen)}
-      />
+      <div className={modalOverlayClass(isModalOpen)} />
       <div className={modalSectionClass(isModalOpen)}>
         <div className="modal-content" ref={modalRef}>
           {showCloseBtn && (
