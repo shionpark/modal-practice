@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import { Button } from '@components/Button';
-import { ModalOverlay } from '@components/ModalOverlay';
+import { ModalOverlay } from './ModalOverlay';
 import type { Action, ModalProps } from './types';
 
 interface ConfirmDialogProps extends ModalProps {

@@ -1,4 +1,4 @@
-import { ModalOverlay } from '@components/ModalOverlay';
+import { ModalOverlay } from './ModalOverlay';
 import type { Action, ModalProps } from './types';
 
 interface SimpleMenusProps extends ModalProps {
