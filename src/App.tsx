@@ -23,8 +23,8 @@ function App() {
       <Button onClick={toggleAlerts}>삭제</Button>
       <Button onClick={toggleTitleDialog}>제목 선택</Button>
       <Button onClick={toggleLocationDialog}>위치 정보 동의</Button>
-      <Button onClick={toggleSimpleDialog}>메뉴 선택</Button>
-      <Button onClick={toggleSimpleMenus}>더보기</Button>
+      <Button onClick={toggleSimpleDialog}>계정 선택</Button>
+      <Button onClick={toggleSimpleMenus}>알림 권한</Button>
 
       <Alerts
         isModalOpen={isAlertsOpen}
@@ -92,7 +92,7 @@ function App() {
       />
 
       <SimpleDialog
-        title="계정 설정"
+        title="계정 목록"
         isModalOpen={isSimpleDialogOpen}
         closeModal={closeSimpleDialog}
       >

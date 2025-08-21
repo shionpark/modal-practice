@@ -1,9 +1,13 @@
-import type { ReactNode } from 'react';
-import clsx from 'clsx';
+import { type ReactNode } from 'react';
+
+import {
+  modalOverlayClass,
+  modalSectionClass,
+  type ModalProps,
+} from '@components/modals';
 import { Button } from '@components/Button';
-import type { ModalProps } from '@components/modals';
-import { useOutsideClick } from '@hooks/useOutsideClick';
 import { useEscapeKey } from '@hooks/useEscapeKey';
+import { useOutsideClick } from '@hooks/useOutsideClick';
 
 interface ModalOverlayProps extends ModalProps {
   children: ReactNode;
@@ -21,20 +25,6 @@ export function ModalOverlay({
     closeModal,
   });
   const { modalRef } = useOutsideClick(closeModal);
-
-  const modalOverlayClass = (isOpen: boolean) =>
-    clsx(
-      'modal-overlay',
-      isOpen
-        ? 'opacity-50 pointer-events-auto'
-        : 'opacity-0 pointer-events-none'
-    );
-
-  const modalSectionClass = (isOpen: boolean) =>
-    clsx(
-      'modal-section',
-      isOpen ? 'scale-100 opacity-100' : 'pointer-events-none opacity-0'
-    );
 
   return (
     <>
