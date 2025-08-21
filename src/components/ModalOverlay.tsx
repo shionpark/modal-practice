@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import { Button } from '@components/Button';
 import type { ModalProps } from '@components/modals';
 import { useOutsideClick } from '@hooks/useOutsideClick';
+import { useEscapeKey } from '@hooks/useEscapeKey';
 
 interface ModalOverlayProps extends ModalProps {
   children: ReactNode;
@@ -15,6 +16,10 @@ export function ModalOverlay({
   isModalOpen,
   closeModal,
 }: ModalOverlayProps) {
+  const { overlayRef, handleEscapeKey } = useEscapeKey({
+    isModalOpen,
+    closeModal,
+  });
   const { modalRef } = useOutsideClick(closeModal);
 
   const modalOverlayClass = (isOpen: boolean) =>
@@ -33,7 +38,12 @@ export function ModalOverlay({
 
   return (
     <>
-      <div className={modalOverlayClass(isModalOpen)} />
+      <div
+        ref={overlayRef}
+        tabIndex={0}
+        onKeyDown={handleEscapeKey}
+        className={modalOverlayClass(isModalOpen)}
+      />
       <div className={modalSectionClass(isModalOpen)}>
         <div className="modal-content" ref={modalRef}>
           {showCloseBtn && (
