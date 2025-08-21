@@ -10,8 +10,6 @@
 | 라이브러리 | React      |
 | 상태 관리  | useState   |
 | 스타일링   | Tailwind   |
-| 테스트     | Vitest     |
-| 배포       | Vercel     |
 
 ## 주요 기능
 
