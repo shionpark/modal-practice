@@ -1,4 +1,4 @@
-import { useEffect, type KeyboardEvent } from 'react';
+import { useEffect } from 'react';
 
 interface UseEscapeKeyProps {
   isModalOpen: boolean;
