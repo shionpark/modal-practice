@@ -24,14 +24,15 @@ export function ModalOverlay({
 
   return (
     <>
-      <div className={modalOverlayClass(isModalOpen)} />
+      <div className={modalOverlayClass(isModalOpen)} aria-hidden />
       <div className={modalSectionClass(isModalOpen)}>
-        <div className="modal-content" ref={modalRef}>
+        <div className="modal-content" ref={modalRef} role="dialog">
           {showCloseBtn && (
             <Button
               variant="transparent"
               className="absolute top-4 right-2"
               onClick={closeModal}
+              aria-label="Close"
             >
               X
             </Button>
