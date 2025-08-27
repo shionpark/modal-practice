@@ -1,3 +1,5 @@
+import { useCallback, useMemo } from 'react';
+
 import { Button } from '@components/common';
 import {
   Alerts,
@@ -9,6 +11,23 @@ import { useToggle } from '@hooks/modals';
 
 function App() {
   const [isAlertsOpen, toggleAlerts, , closeAlerts] = useToggle(false);
+
+  const onDeleteConfirm = useCallback(() => confirm('삭제'), []);
+
+  const alertsActions = useMemo(
+    () => [
+      {
+        label: '취소',
+        onClick: closeAlerts,
+      },
+      {
+        label: '삭제',
+        onClick: onDeleteConfirm,
+      },
+    ],
+    [closeAlerts, onDeleteConfirm]
+  );
+
   const [isTitleDialogOpen, toggleTitleDialog, , closeTitleDialog] =
     useToggle(false);
   const [isLocationDialogOpen, toggleLocationDialog, , closeLocationDialog] =
@@ -30,16 +49,7 @@ function App() {
         isModalOpen={isAlertsOpen}
         closeModal={closeAlerts}
         message="초안을 삭제하시겠습니까?"
-        actions={[
-          {
-            label: '취소',
-            onClick: closeAlerts,
-          },
-          {
-            label: '삭제',
-            onClick: () => confirm('삭제'),
-          },
-        ]}
+        actions={alertsActions}
       />
 
       <ConfirmDialog

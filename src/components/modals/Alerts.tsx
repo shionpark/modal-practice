@@ -1,3 +1,5 @@
+import { memo } from 'react';
+
 import { Button, ModalOverlay } from '@components/common';
 import type { Action, ModalProps } from './types';
 
@@ -7,7 +9,7 @@ interface AlertsProps extends ModalProps {
   actions?: Action[];
 }
 
-export default function Alerts({
+function Alerts({
   title = '',
   message,
   actions,
@@ -36,3 +38,5 @@ export default function Alerts({
     </ModalOverlay>
   );
 }
+
+export default memo(Alerts);
