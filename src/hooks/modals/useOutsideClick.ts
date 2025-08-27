@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 
 export const useOutsideClick = (
   closeModal: () => void,
-  enabled: { enabled: boolean }
+  { enabled }: { enabled: boolean }
 ) => {
   const modalRef = useRef<HTMLDivElement | null>(null);
 
