@@ -1,12 +1,7 @@
 import { useCallback, useMemo } from 'react';
 
 import { Button } from '@components/common';
-import {
-  Alerts,
-  ConfirmDialog,
-  SimpleDialog,
-  SimpleMenus,
-} from '@components/modals';
+import { Alerts, Dialog } from '@components/modals';
 import { useToggle } from '@hooks/modals';
 
 function App() {
@@ -34,8 +29,6 @@ function App() {
     useToggle(false);
   const [isSimpleDialogOpen, toggleSimpleDialog, , closeSimpleDialog] =
     useToggle(false);
-  const [isSimpleMenusOpen, toggleSimpleMenus, , closeSimpleMenus] =
-    useToggle(false);
 
   return (
     <div className="flex min-h-screen items-center justify-center gap-6 bg-gray-100">
@@ -43,7 +36,6 @@ function App() {
       <Button onClick={toggleTitleDialog}>제목 선택</Button>
       <Button onClick={toggleLocationDialog}>위치 정보 동의</Button>
       <Button onClick={toggleSimpleDialog}>계정 선택</Button>
-      <Button onClick={toggleSimpleMenus}>알림 권한</Button>
 
       <Alerts
         isModalOpen={isAlertsOpen}
@@ -52,26 +44,10 @@ function App() {
         actions={alertsActions}
       />
 
-      <ConfirmDialog
+      <Dialog
         title="Title"
         isModalOpen={isTitleDialogOpen}
         closeModal={closeTitleDialog}
-        content={
-          <ul className="flex max-h-[10rem] w-[12rem] flex-col overflow-y-auto">
-            <li className="flex gap-2 py-2">
-              <input type="checkbox" aria-label="option1" />
-              <span>Option 1</span>
-            </li>
-            <li className="flex gap-2 py-2">
-              <input type="checkbox" aria-label="option2" />
-              <span>Option 2</span>
-            </li>
-            <li className="flex gap-2 py-2">
-              <input type="checkbox" aria-label="option3" />
-              <span>Option 3</span>
-            </li>
-          </ul>
-        }
         actions={[
           {
             label: '취소',
@@ -82,13 +58,27 @@ function App() {
             onClick: () => confirm('선택'),
           },
         ]}
-      />
+      >
+        <ul className="flex max-h-[10rem] w-[12rem] flex-col overflow-y-auto">
+          <li className="flex gap-2 py-2">
+            <input type="checkbox" aria-label="option1" />
+            <span>Option 1</span>
+          </li>
+          <li className="flex gap-2 py-2">
+            <input type="checkbox" aria-label="option2" />
+            <span>Option 2</span>
+          </li>
+          <li className="flex gap-2 py-2">
+            <input type="checkbox" aria-label="option3" />
+            <span>Option 3</span>
+          </li>
+        </ul>
+      </Dialog>
 
-      <ConfirmDialog
+      <Dialog
         title="위치 정보 동의"
         isModalOpen={isLocationDialogOpen}
         closeModal={closeLocationDialog}
-        content="Google에서 앱의 위치 파악을 지원하도록 동의하시겠습니까?"
         actions={[
           {
             label: '취소',
@@ -99,9 +89,11 @@ function App() {
             onClick: () => confirm('동의'),
           },
         ]}
-      />
+      >
+        <p>Google에서 앱의 위치 파악을 지원하도록 동의하시겠습니까?</p>
+      </Dialog>
 
-      <SimpleDialog
+      <Dialog
         title="계정 목록"
         isModalOpen={isSimpleDialogOpen}
         closeModal={closeSimpleDialog}
@@ -118,26 +110,7 @@ function App() {
           <div className="rounded-full bg-black p-5" />
           <span>username@gmail.com</span>
         </div>
-      </SimpleDialog>
-
-      <SimpleMenus
-        isModalOpen={isSimpleMenusOpen}
-        closeModal={closeSimpleMenus}
-        menus={[
-          {
-            label: '모든 알림 보여주기',
-            onClick: () => confirm('모든 알림 보여주기'),
-          },
-          {
-            label: '민감한 알림 숨기기',
-            onClick: () => confirm('민감한 알림 숨기기'),
-          },
-          {
-            label: '모든 알림 숨기기',
-            onClick: () => confirm('모든 알림 숨기기'),
-          },
-        ]}
-      />
+      </Dialog>
     </div>
   );
 }
