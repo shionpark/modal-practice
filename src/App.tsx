@@ -1,13 +1,29 @@
 import { useCallback, useMemo } from 'react';
 
-import { Button } from '@components/common';
+import { AccountItem, Button, OptionItem } from '@components/common';
 import { Alerts, Dialog } from '@components/modals';
 import { useToggle } from '@hooks/modals';
 
 function App() {
-  const [isAlertsOpen, toggleAlerts, , closeAlerts] = useToggle(false);
+  const onConfirmMessage = useCallback(
+    (message: string) => confirm(message),
+    []
+  );
 
-  const onDeleteConfirm = useCallback(() => confirm('삭제'), []);
+  const onDeleteConfirm = useCallback(
+    () => onConfirmMessage('삭제'),
+    [onConfirmMessage]
+  );
+  const onSelectConfirm = useCallback(
+    () => onConfirmMessage('선택'),
+    [onConfirmMessage]
+  );
+  const onAgreeConfirm = useCallback(
+    () => onConfirmMessage('동의'),
+    [onConfirmMessage]
+  );
+
+  const [isAlertsOpen, , openAlerts, closeAlerts] = useToggle(false);
 
   const alertsActions = useMemo(
     () => [
@@ -23,19 +39,71 @@ function App() {
     [closeAlerts, onDeleteConfirm]
   );
 
-  const [isTitleDialogOpen, toggleTitleDialog, , closeTitleDialog] =
+  const [isOptionsOpen, , openOptions, closeOptions] = useToggle(false);
+
+  const optionsActions = useMemo(
+    () => [
+      {
+        label: '취소',
+        onClick: closeOptions,
+      },
+      {
+        label: '선택',
+        onClick: onSelectConfirm,
+      },
+    ],
+    [closeOptions, onSelectConfirm]
+  );
+
+  const options = useMemo(
+    () => [
+      { id: 'option1', label: 'Option 1' },
+      { id: 'option2', label: 'Option 2' },
+      { id: 'option3', label: 'Option 3' },
+    ],
+    []
+  );
+
+  const [
+    isLocationAgreementOpen,
+    ,
+    openLocationAgreement,
+    closeLocationAgreement,
+  ] = useToggle(false);
+
+  const locationAgreementActions = useMemo(
+    () => [
+      {
+        label: '취소',
+        onClick: closeLocationAgreement,
+      },
+      {
+        label: '동의',
+        onClick: onAgreeConfirm,
+      },
+    ],
+    [closeLocationAgreement, onAgreeConfirm]
+  );
+
+  const [isAccountListOpen, , openAccountList, closeAccountList] =
     useToggle(false);
-  const [isLocationDialogOpen, toggleLocationDialog, , closeLocationDialog] =
-    useToggle(false);
-  const [isSimpleDialogOpen, toggleSimpleDialog, , closeSimpleDialog] =
-    useToggle(false);
+
+  const accountList = useMemo(
+    () => (
+      <div className="flex flex-col gap-2">
+        <AccountItem email="username@gmail.com" />
+        <AccountItem email="username2@gmail.com" />
+      </div>
+    ),
+    []
+  );
 
   return (
     <div className="flex min-h-screen items-center justify-center gap-6 bg-gray-100">
-      <Button onClick={toggleAlerts}>삭제</Button>
-      <Button onClick={toggleTitleDialog}>제목 선택</Button>
-      <Button onClick={toggleLocationDialog}>위치 정보 동의</Button>
-      <Button onClick={toggleSimpleDialog}>계정 선택</Button>
+      <Button onClick={openAlerts}>삭제</Button>
+      <Button onClick={openOptions}>제목 선택</Button>
+      <Button onClick={openLocationAgreement}>위치 정보 동의</Button>
+      <Button onClick={openAccountList}>계정 선택</Button>
 
       <Alerts
         isModalOpen={isAlertsOpen}
@@ -45,71 +113,33 @@ function App() {
       />
 
       <Dialog
-        title="Title"
-        isModalOpen={isTitleDialogOpen}
-        closeModal={closeTitleDialog}
-        actions={[
-          {
-            label: '취소',
-            onClick: closeTitleDialog,
-          },
-          {
-            label: '선택',
-            onClick: () => confirm('선택'),
-          },
-        ]}
+        title="메뉴 선택"
+        isModalOpen={isOptionsOpen}
+        closeModal={closeOptions}
+        actions={optionsActions}
       >
         <ul className="flex max-h-[10rem] w-[12rem] flex-col overflow-y-auto">
-          <li className="flex gap-2 py-2">
-            <input type="checkbox" aria-label="option1" />
-            <span>Option 1</span>
-          </li>
-          <li className="flex gap-2 py-2">
-            <input type="checkbox" aria-label="option2" />
-            <span>Option 2</span>
-          </li>
-          <li className="flex gap-2 py-2">
-            <input type="checkbox" aria-label="option3" />
-            <span>Option 3</span>
-          </li>
+          {options.map(({ id, label }) => (
+            <OptionItem key={id} id={id} label={label} />
+          ))}
         </ul>
       </Dialog>
 
       <Dialog
         title="위치 정보 동의"
-        isModalOpen={isLocationDialogOpen}
-        closeModal={closeLocationDialog}
-        actions={[
-          {
-            label: '취소',
-            onClick: closeLocationDialog,
-          },
-          {
-            label: '동의',
-            onClick: () => confirm('동의'),
-          },
-        ]}
+        isModalOpen={isLocationAgreementOpen}
+        closeModal={closeLocationAgreement}
+        actions={locationAgreementActions}
       >
         <p>Google에서 앱의 위치 파악을 지원하도록 동의하시겠습니까?</p>
       </Dialog>
 
       <Dialog
         title="계정 목록"
-        isModalOpen={isSimpleDialogOpen}
-        closeModal={closeSimpleDialog}
+        isModalOpen={isAccountListOpen}
+        closeModal={closeAccountList}
       >
-        <div className="flex items-center gap-3">
-          <div className="rounded-full bg-black p-5" />
-          <span>username@gmail.com</span>
-        </div>
-        <div className="flex items-center gap-3">
-          <div className="rounded-full bg-black p-5" />
-          <span>username@gmail.com</span>
-        </div>
-        <div className="flex items-center gap-3">
-          <div className="rounded-full bg-black p-5" />
-          <span>username@gmail.com</span>
-        </div>
+        {accountList}
       </Dialog>
     </div>
   );
