@@ -14,7 +14,7 @@ interface ModalOverlayProps extends ModalProps {
   showCloseBtn?: boolean;
 }
 
-export function ModalOverlay({
+export default function ModalOverlay({
   children,
   showCloseBtn = true,
   isModalOpen,

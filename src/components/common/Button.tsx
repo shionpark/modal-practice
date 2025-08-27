@@ -8,7 +8,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   color?: 'default' | 'primary';
 }
 
-export function Button({
+export default function Button({
   children,
   className = '',
   variant = 'solid',

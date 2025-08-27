@@ -5,11 +5,7 @@ interface SimpleMenusProps extends ModalProps {
   menus: Action[];
 }
 
-export function SimpleMenus({
-  menus,
-  isModalOpen,
-  closeModal,
-}: SimpleMenusProps) {
+function SimpleMenus({ menus, isModalOpen, closeModal }: SimpleMenusProps) {
   return (
     <ModalOverlay
       showCloseBtn={false}
@@ -26,3 +22,5 @@ export function SimpleMenus({
     </ModalOverlay>
   );
 }
+
+export default SimpleMenus;

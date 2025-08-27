@@ -7,7 +7,7 @@ interface AlertsProps extends ModalProps {
   actions?: Action[];
 }
 
-export function Alerts({
+export default function Alerts({
   title = '',
   message,
   actions,

@@ -9,7 +9,7 @@ interface ConfirmDialogProps extends ModalProps {
   actions?: Action[];
 }
 
-export function ConfirmDialog({
+export default function ConfirmDialog({
   title,
   content,
   actions,

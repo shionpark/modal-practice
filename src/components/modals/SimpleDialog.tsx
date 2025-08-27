@@ -8,7 +8,7 @@ interface SimpleDialogProps extends ModalProps {
   children?: ReactNode;
 }
 
-export function SimpleDialog({
+function SimpleDialog({
   title,
   children,
   isModalOpen,
@@ -27,3 +27,5 @@ export function SimpleDialog({
     </ModalOverlay>
   );
 }
+
+export default SimpleDialog;
