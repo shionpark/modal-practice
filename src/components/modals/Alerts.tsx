@@ -1,5 +1,4 @@
-import { Button } from '@components/Button';
-import { ModalOverlay } from './ModalOverlay';
+import { Button, ModalOverlay } from '@components/common';
 import type { Action, ModalProps } from './types';
 
 interface AlertsProps extends ModalProps {

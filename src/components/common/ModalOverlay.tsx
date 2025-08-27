@@ -1,11 +1,13 @@
-import { type ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
-import { Button } from '@components/Button';
-import { useEscapeKey } from '@hooks/useEscapeKey';
-import { useOutsideClick } from '@hooks/useOutsideClick';
+import {
+  modalOverlayClass,
+  modalSectionClass,
+  type ModalProps,
+} from '@components/modals';
+import { useEscapeKey, useOutsideClick } from '@hooks/modals';
 
-import { modalOverlayClass, modalSectionClass } from './modalClass';
-import type { ModalProps } from './types';
+import Button from './Button';
 
 interface ModalOverlayProps extends ModalProps {
   children: ReactNode;

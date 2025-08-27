@@ -1,11 +1,11 @@
+import { Button } from '@components/common';
 import {
   Alerts,
   ConfirmDialog,
   SimpleDialog,
   SimpleMenus,
 } from '@components/modals';
-import { Button } from '@components/Button';
-import { useToggle } from '@hooks/useToggle';
+import { useToggle } from '@hooks/modals';
 
 function App() {
   const [isAlertsOpen, toggleAlerts, , closeAlerts] = useToggle(false);

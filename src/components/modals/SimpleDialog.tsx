@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
-import { ModalOverlay } from './ModalOverlay';
+
+import { ModalOverlay } from '@components/common';
 import type { ModalProps } from './types';
 
 interface SimpleDialogProps extends ModalProps {
