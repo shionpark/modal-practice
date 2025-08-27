@@ -1,13 +1,13 @@
 import { useEffect } from 'react';
 
 interface UseEscapeKeyProps {
-  isModalOpen: boolean;
+  enabled: boolean;
   onEscape: () => void;
 }
 
-export const useEscapeKey = ({ isModalOpen, onEscape }: UseEscapeKeyProps) => {
+export const useEscapeKey = ({ enabled, onEscape }: UseEscapeKeyProps) => {
   useEffect(() => {
-    if (!isModalOpen) return;
+    if (!enabled) return;
 
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
@@ -18,5 +18,5 @@ export const useEscapeKey = ({ isModalOpen, onEscape }: UseEscapeKeyProps) => {
 
     document.addEventListener('keydown', onKey);
     return () => document.removeEventListener('keydown', onKey);
-  }, [isModalOpen, onEscape]);
+  }, [enabled, onEscape]);
 };

@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import { memo, type ReactNode } from 'react';
 
 import {
   modalOverlayClass,
@@ -14,15 +14,17 @@ interface ModalOverlayProps extends ModalProps {
   showCloseBtn?: boolean;
 }
 
-export default function ModalOverlay({
+function ModalOverlay({
   children,
   showCloseBtn = true,
   isModalOpen,
   closeModal,
 }: ModalOverlayProps) {
-  useEscapeKey({ isModalOpen, onEscape: closeModal });
+  useEscapeKey({ enabled: isModalOpen, onEscape: closeModal });
 
-  const { modalRef } = useOutsideClick(closeModal);
+  const { modalRef } = useOutsideClick(closeModal, { enabled: isModalOpen });
+
+  if (!isModalOpen) return null;
 
   return (
     <>
@@ -45,3 +47,5 @@ export default function ModalOverlay({
     </>
   );
 }
+
+export default memo(ModalOverlay);
