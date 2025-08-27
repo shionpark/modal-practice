@@ -1,4 +1,4 @@
-import type { ButtonHTMLAttributes, ReactNode } from 'react';
+import { memo, type ButtonHTMLAttributes, type ReactNode } from 'react';
 import clsx from 'clsx';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -8,7 +8,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   color?: 'default' | 'primary';
 }
 
-export default function Button({
+function Button({
   children,
   className = '',
   variant = 'solid',
@@ -34,3 +34,5 @@ export default function Button({
     </button>
   );
 }
+
+export default memo(Button);
