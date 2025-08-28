@@ -16,26 +16,40 @@ function Dialog({
   isModalOpen,
   closeModal,
 }: DialogProps) {
+  const titleId = 'dialog-title';
+  const descId = 'dialog-desc';
+
   return (
     <ModalOverlay isModalOpen={isModalOpen} closeModal={closeModal}>
-      <div className="section">
-        <div className="title">{title}</div>
-        <div className="content">{children}</div>
-      </div>
-      {actions && (
-        <div className="actions">
-          {actions?.map(({ label, onClick }: Action, index: number) => (
-            <Button
-              key={`${label}-${index}`}
-              color="primary"
-              variant="transparent"
-              onClick={onClick}
-            >
-              {label}
-            </Button>
-          ))}
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={titleId}
+        aria-describedby={descId}
+        className="section"
+        tabIndex={-1}
+      >
+        <h3 id={titleId} className="title">
+          {title}
+        </h3>
+        <div id={descId} className="content">
+          {children}
         </div>
-      )}
+        {actions?.length && (
+          <div className="actions">
+            {actions?.map(({ label, onClick }: Action, index: number) => (
+              <Button
+                key={`${label}-${index}`}
+                color="primary"
+                variant="transparent"
+                onClick={onClick}
+              >
+                {label}
+              </Button>
+            ))}
+          </div>
+        )}
+      </div>
     </ModalOverlay>
   );
 }

@@ -28,9 +28,9 @@ function ModalOverlay({
 
   return (
     <>
-      <div className={modalOverlayClass(isModalOpen)} aria-hidden />
+      <div className={modalOverlayClass(isModalOpen)} aria-hidden="true" />
       <div className={modalSectionClass(isModalOpen)}>
-        <div className="modal-content" ref={modalRef} role="dialog">
+        <div ref={modalRef} className="modal-content">
           {showCloseBtn && (
             <Button
               variant="transparent"

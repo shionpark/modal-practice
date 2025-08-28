@@ -16,24 +16,38 @@ function Alerts({
   isModalOpen,
   closeModal,
 }: AlertsProps) {
+  const titleId = 'alerts-title';
+  const descId = 'alerts-desc';
+
   return (
     <ModalOverlay
       isModalOpen={isModalOpen}
       closeModal={closeModal}
       showCloseBtn={false}
     >
-      <div className="section">
-        <div className="title">{title}</div>
-        <span className="content">{message}</span>
-      </div>
-      <div className="actions">
-        {actions?.map(({ label, onClick }: Action) => (
-          <div key={label}>
-            <Button color="primary" variant="transparent" onClick={onClick}>
-              {label}
-            </Button>
-          </div>
-        ))}
+      <div
+        role="alertdialog"
+        aria-modal="true"
+        aria-labelledby={titleId}
+        aria-describedby={descId}
+        className="section"
+        tabIndex={-1}
+      >
+        <h3 id={titleId} className="title">
+          {title}
+        </h3>
+        <span id={descId} className="content">
+          {message}
+        </span>
+        <div className="actions">
+          {actions?.map(({ label, onClick }: Action) => (
+            <div key={label}>
+              <Button color="primary" variant="transparent" onClick={onClick}>
+                {label}
+              </Button>
+            </div>
+          ))}
+        </div>
       </div>
     </ModalOverlay>
   );
