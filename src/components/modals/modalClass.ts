@@ -1,15 +1,7 @@
 import clsx from 'clsx';
 
 export const modalOverlayClass = (isOpen: boolean) =>
-  clsx(
-    'modal-overlay',
-    isOpen
-      ? 'bg-black/50 pointer-events-auto'
-      : 'bg-black/100 pointer-events-none'
-  );
+  clsx('modal-overlay', isOpen && 'bg-black/50 pointer-events-auto');
 
 export const modalSectionClass = (isOpen: boolean) =>
-  clsx(
-    'modal-section',
-    isOpen ? 'scale-100 opacity-100' : 'pointer-events-none opacity-0'
-  );
+  clsx('modal-section', isOpen && 'scale-100 opacity-100');
