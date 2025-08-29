@@ -1,5 +1,5 @@
 .modal-overlay {
-  @apply fixed inset-0 bg-black;
+  @apply fixed inset-0;
   @apply transition duration-200 ease-in-out;
 }
 .modal-section {
@@ -14,14 +14,11 @@
   .modal-content .section {
     @apply flex flex-col gap-6 p-7;
   }
-  .modal-content .title {
-    @apply text-lg font-bold;
-  }
   .modal-content .content {
     @apply block text-gray-700;
   }
   .modal-content .actions {
-    @apply flex w-full items-center justify-end gap-2 p-3;
+    @apply flex items-center justify-end gap-2;
   }
   .modal-content .menus {
     @apply cursor-pointer bg-gray-100 p-3 pr-10 hover:bg-gray-200;

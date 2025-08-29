@@ -1,8 +1,5 @@
-export * from './Alerts';
-export * from './ConfirmDialog';
-export * from './ModalOverlay';
-export * from './SimpleDialog';
-export * from './SimpleMenus';
+export { default as Alerts } from './Alerts';
+export { default as Dialog } from './Dialog';
 
 export * from './types';
 export * from './modalClass';
