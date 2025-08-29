@@ -1,4 +1,4 @@
-import { memo, type ReactNode } from 'react';
+import { memo, useId, type ReactNode } from 'react';
 
 import { Button, ModalOverlay } from '@components/common';
 import type { Action, ModalProps } from './types';
@@ -16,8 +16,9 @@ function Dialog({
   isModalOpen,
   closeModal,
 }: DialogProps) {
-  const titleId = 'dialog-title';
-  const descId = 'dialog-desc';
+  const id = useId();
+  const titleId = `${id}-dialog-title`;
+  const descId = `${id}-dialog-desc`;
 
   return (
     <ModalOverlay isModalOpen={isModalOpen} closeModal={closeModal}>

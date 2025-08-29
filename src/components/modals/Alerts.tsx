@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, useId } from 'react';
 
 import { Button, ModalOverlay } from '@components/common';
 import type { Action, ModalProps } from './types';
@@ -16,8 +16,9 @@ function Alerts({
   isModalOpen,
   closeModal,
 }: AlertsProps) {
-  const titleId = 'alerts-title';
-  const descId = 'alerts-desc';
+  const id = useId();
+  const titleId = `${id}-alerts-title`;
+  const descId = `${id}-alerts-desc`;
 
   return (
     <ModalOverlay
