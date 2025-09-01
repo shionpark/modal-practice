@@ -16,8 +16,8 @@ type UseToggleReturn = readonly [
  * - setFalse: 토글 상태를 false로 설정하는 함수
  */
 
-export const useToggle = (initialValue: boolean): UseToggleReturn => {
-  const [value, setValue] = useState(initialValue);
+export const useToggle = (initialValue?: boolean): UseToggleReturn => {
+  const [value, setValue] = useState(initialValue || false);
 
   const toggle = useCallback(() => setValue((prev) => !prev), []);
   const setTrue = useCallback(() => setValue(true), []);
