@@ -34,21 +34,21 @@ describe('useOutsideClick', () => {
 
   it('ref 외부 클릭 시 close 함수가 호출된다', () => {
     const onClose = vi.fn();
-    const { getAllByTestId } = render(
+    const { getByTestId } = render(
       <Harness enabled={true} onClose={onClose} />
     );
 
-    fireEvent.mouseDown(getAllByTestId('outside')[0]);
+    fireEvent.mouseDown(getByTestId('outside'));
     expect(onClose).toHaveBeenCalledTimes(1);
   });
 
   it('enabled=false이면 실행되지 않음', () => {
     const onClose = vi.fn();
-    const { getAllByTestId } = render(
+    const { getByTestId } = render(
       <Harness enabled={false} onClose={onClose} />
     );
 
-    fireEvent.mouseDown(getAllByTestId('outside')[0]);
+    fireEvent.mouseDown(getByTestId('outside'));
     expect(onClose).not.toHaveBeenCalled();
   });
 });
